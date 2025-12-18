@@ -1,6 +1,4 @@
-/* ==============================
-   1. AUTHENTICATION & THEME SETUP
-   ============================== */
+/*   1. AUTHENTICATION & THEME SETUP */
 const currentUser = localStorage.getItem('typeMasterCurrentUser');
 if (!currentUser) window.location.href = 'login.html';
 
@@ -40,9 +38,7 @@ if (themeToggleBtn) {
     });
 }
 
-/* ==============================
-   2. AUDIO SYSTEM (Generated Tones)
-   ============================== */
+/* 2. AUDIO SYSTEM  */
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function playTone(freq, type, duration) {
@@ -67,9 +63,8 @@ function playAudio(type) {
     }
 }
 
-/* ==============================
-   3. GAME DATA (MASSIVE LIBRARY)
-   ============================== */
+/* 
+   3. GAME DATA  */
 const quotesDB = {
     easy: [
         "sky", "run", "jump", "code", "fast", "slow", "blue", "red",
@@ -117,9 +112,9 @@ const quotesDB = {
     ]
 };
 
-/* ==============================
+/* 
    4. GAME ELEMENTS
-   ============================== */
+   */
 const display = document.getElementById('quote-display');
 const input = document.getElementById('quote-input');
 const timerEl = document.getElementById('timer');
@@ -138,9 +133,9 @@ let currentLevel = 'medium';
 let currentHighScore = usersDB[currentUser] ? (usersDB[currentUser].highScore || 0) : 0;
 highScoreEl.innerText = currentHighScore;
 
-/* ==============================
+/* 
    5. CORE FUNCTIONS
-   ============================== */
+    */
 
 let lastQuote = ""; 
 
@@ -227,9 +222,9 @@ function gameOver() {
     }, 50);
 }
 
-/* ==============================
+/* 
    6. EVENT LISTENERS
-   ============================== */
+ */
 
 // KEYBOARD LOGIC
 document.addEventListener('keydown', (e) => {
@@ -352,9 +347,8 @@ restartBtn.addEventListener('click', renderNewQuote);
 renderNewQuote();
 
 
-/* ==============================
-   7. DATA VISUALIZATION (CHART.JS)
-   ============================== */
+/* 
+   7. DATA VISUALIZATION */
 const ctxEl = document.getElementById('progressChart');
 
 if (ctxEl) {
@@ -422,4 +416,5 @@ if (ctxEl) {
         myChart.data.datasets[0].data = userHistory;
         myChart.update();
     }
+
 }
