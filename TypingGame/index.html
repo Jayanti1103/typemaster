@@ -8,10 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        // Check for user IMMEDIATELY before the page loads
+        
         const savedUser = localStorage.getItem('typeMasterCurrentUser');
         if (!savedUser) {
-            // If no user, stop everything and go to login
+            
             window.location.replace('login.html');
         }
     </script>
@@ -33,7 +33,7 @@
             background-color: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif;
             display: flex; justify-content: center; align-items: center; min-height: 100vh;
             padding: 2rem; transition: background 0.3s, color 0.3s;
-            /* Hide content until loaded to be extra safe */
+            
             opacity: 0; animation: fadeIn 0.5s forwards;
         }
         @keyframes fadeIn { to { opacity: 1; } }
@@ -45,19 +45,18 @@
             width: 100%; max-width: 600px; margin: 0 auto;
         }
 
-        /* HEADER */
+       
         header { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         h1 { font-weight: 800; font-size: 1.5rem; }
         .dot { color: var(--primary); }
 
-        /* CONTROLS */
         .controls-row { display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 1rem; }
         .stats-bar { display: flex; gap: 1rem; flex-wrap: wrap; }
         .stat-item { display: flex; flex-direction: column; align-items: center; }
         .stat-item small { font-size: 0.7rem; color: var(--gray-text); text-transform: uppercase; }
         .stat-item span { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
 
-        /* GAME AREA */
+    
         .game-wrapper { width: 100%; }
         .quote-display { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; line-height: 1.6; margin-bottom: 1rem; color: var(--gray-text); min-height: 50px; }
         .quote-input {
@@ -67,7 +66,7 @@
         }
         .quote-input:focus { border-color: var(--primary); }
 
-        /* KEYBOARD */
+      
         .keyboard { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 1rem; user-select: none; }
         .row { display: flex; gap: 6px; }
         .key {
@@ -79,15 +78,15 @@
         .key.active { background: var(--primary); color: white; border-color: var(--primary-dark); box-shadow: 0 0 0 var(--primary-dark); transform: translateY(2px); }
         .key.error { background: var(--red); color: white; border-color: #b91c1c; box-shadow: 0 0 0 #b91c1c; transform: translateY(2px); }
 
-        /* CHART */
+      
         .chart-container { width: 100%; padding: 1rem; background: rgba(128,128,128, 0.05); border-radius: 16px; margin-top: 1rem; }
         canvas { width: 100% !important; height: 200px !important; }
 
-        /* BUTTONS */
+   
         .restart-btn { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; margin-top: 1rem; }
         .restart-btn:hover { background: var(--primary-dark); }
 
-        /* UTILS */
+      
         .hidden { display: none !important; }
         .correct { color: var(--text-color); }
         .incorrect { color: var(--red); text-decoration: underline wavy var(--red); }
@@ -97,7 +96,7 @@
         .theme-btn { background: none; border: none; cursor: pointer; color: var(--text-color); }
         .logout-btn { background:none; border:1px solid var(--input-border); padding:0.3rem 0.8rem; border-radius:6px; cursor:pointer; color:var(--text-color); margin-left:10px;}
 
-        /* MOBILE RESPONSIVE */
+    
         @media (max-width: 768px) {
             .keyboard { display: none; }
             .quote-input { height: 80px; font-size: 1rem; }
@@ -183,4 +182,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
