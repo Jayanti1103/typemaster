@@ -1,4 +1,4 @@
-/*   1. AUTHENTICATION & THEME SETUP */
+
 const currentUser = localStorage.getItem('typeMasterCurrentUser');
 if (!currentUser) window.location.href = 'login.html';
 
@@ -38,7 +38,7 @@ if (themeToggleBtn) {
     });
 }
 
-/* 2. AUDIO SYSTEM  */
+
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 function playTone(freq, type, duration) {
@@ -57,14 +57,13 @@ function playTone(freq, type, duration) {
 
 function playAudio(type) {
     if (type === 'correct') {
-        playTone(600, 'sine', 0.05); // Mechanical Tick
+        playTone(600, 'sine', 0.05); 
     } else {
-        playTone(150, 'sawtooth', 0.2); // Error Buzz
+        playTone(150, 'sawtooth', 0.2); 
     }
 }
 
-/* 
-   3. GAME DATA  */
+
 const quotesDB = {
     easy: [
         "sky", "run", "jump", "code", "fast", "slow", "blue", "red",
@@ -112,9 +111,7 @@ const quotesDB = {
     ]
 };
 
-/* 
-   4. GAME ELEMENTS
-   */
+
 const display = document.getElementById('quote-display');
 const input = document.getElementById('quote-input');
 const timerEl = document.getElementById('timer');
@@ -133,17 +130,15 @@ let currentLevel = 'medium';
 let currentHighScore = usersDB[currentUser] ? (usersDB[currentUser].highScore || 0) : 0;
 highScoreEl.innerText = currentHighScore;
 
-/* 
-   5. CORE FUNCTIONS
-    */
+
 
 let lastQuote = ""; 
 
 function getRandomQuote() {
     const list = quotesDB[currentLevel];
-    // 1. Pick a random quote
+   
     let newQuote = list[Math.floor(Math.random() * list.length)];
-    // 2. NO-REPEAT LOGIC
+    
     while (newQuote === lastQuote && list.length > 1) {
         newQuote = list[Math.floor(Math.random() * list.length)];
     }
@@ -160,8 +155,7 @@ function renderNewQuote() {
         span.innerText = char;
         display.appendChild(span);
     });
-    
-    // RESET STATS
+  
     input.value = null;
     wpmEl.innerText = 0;
     mistakesEl.innerText = 0;
@@ -172,7 +166,7 @@ function renderNewQuote() {
     input.classList.remove('shake');
     feedbackMsg.classList.remove('feedback-visible');
     
-    // CLEAR KEYBOARD COLORS
+
     document.querySelectorAll('.key').forEach(key => {
         key.classList.remove('active');
         key.classList.remove('error');
@@ -222,32 +216,30 @@ function gameOver() {
     }, 50);
 }
 
-/* 
-   6. EVENT LISTENERS
- */
 
-// KEYBOARD LOGIC
+
+
 document.addEventListener('keydown', (e) => {
     let keyChar = e.key.toUpperCase();
     if (keyChar === ' ') keyChar = ' ';
     const keyEl = document.querySelector(`.key[data-key="${keyChar}"]`);
     if (!keyEl) return;
 
-    // Check Correctness for Color
+   
     const currentIndex = input.value.length;
     const quoteSpans = display.querySelectorAll('span');
     const targetSpan = quoteSpans[currentIndex];
 
-    if (e.key.length > 1) { // Shift, Backspace, etc
+    if (e.key.length > 1) { 
         keyEl.classList.add('active');
         return;
     }
 
     if (targetSpan) {
         if (keyChar === targetSpan.innerText.toUpperCase()) {
-            keyEl.classList.add('active'); // Blue
+            keyEl.classList.add('active'); 
         } else {
-            keyEl.classList.add('error'); // Red
+            keyEl.classList.add('error'); 
         }
     } else {
         keyEl.classList.add('error');
@@ -264,7 +256,7 @@ document.addEventListener('keyup', (e) => {
     }
 });
 
-// INPUT LOGIC
+
 input.addEventListener('input', (e) => {
     if (!startTime) startTimer();
 
@@ -277,7 +269,6 @@ input.addEventListener('input', (e) => {
     let correct = true;
     let totalMistakes = 0;
 
-    // 1. Loop for Visuals
     quoteSpans.forEach((span, index) => {
         const char = inputChars[index];
 
@@ -295,7 +286,7 @@ input.addEventListener('input', (e) => {
         }
     });
 
-    // 2. AUDIO & LOGIC
+   
     const lastTypedChar = inputChars[currentInputIndex];
     const targetSpan = quoteSpans[currentInputIndex];
 
@@ -305,7 +296,7 @@ input.addEventListener('input', (e) => {
         if (lastTypedChar === targetSpan.innerText) {
             playAudio('correct'); // Correct sound
         } else {
-            // SUDDEN DEATH CHECK
+           
             if (suddenDeathCb && suddenDeathCb.checked) {
                 gameOver();
                 return;
@@ -320,7 +311,7 @@ input.addEventListener('input', (e) => {
         }
     }
 
-    // 3. STATS
+  
     mistakesEl.innerText = totalMistakes;
     if(inputChars.length > 0) {
         let acc = Math.round(((inputChars.length - totalMistakes) / inputChars.length) * 100);
@@ -331,7 +322,7 @@ input.addEventListener('input', (e) => {
         else accuracyEl.style.color = 'var(--green)';
     }
 
-    // 4. FINISH
+    
     if (correct && inputChars.length === quoteSpans.length) {
         clearInterval(timerInterval);
         const finalWPM = parseInt(wpmEl.innerText);
@@ -347,20 +338,18 @@ restartBtn.addEventListener('click', renderNewQuote);
 renderNewQuote();
 
 
-/* 
-   7. DATA VISUALIZATION */
+
 const ctxEl = document.getElementById('progressChart');
 
 if (ctxEl) {
     const ctx = ctxEl.getContext('2d');
 
-    // 1. Get History
+   
     let userHistory = [];
     if (usersDB[currentUser] && usersDB[currentUser].history) {
         userHistory = usersDB[currentUser].history;
     }
 
-    // 2. Force default data if empty
     const chartLabels = userHistory.length > 0 ? userHistory.map((_, i) => i + 1) : [0];
     const chartData = userHistory.length > 0 ? userHistory : [0];
 
@@ -401,7 +390,7 @@ if (ctxEl) {
 
     let myChart = new Chart(ctx, chartConfig);
 
-    // Update Function
+  
     window.updateChart = function(newWPM) {
         userHistory.push(newWPM);
         if (userHistory.length > 10) userHistory.shift();
@@ -418,3 +407,4 @@ if (ctxEl) {
     }
 
 }
+
