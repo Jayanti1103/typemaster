@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - TypeMaster</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blob"></div>
+
+    <div style="position: absolute; top: 20px; right: 20px;">
+        <button id="theme-toggle" class="theme-btn" title="Toggle Dark Mode">
+            <svg id="sun-icon" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <svg id="moon-icon" style="display: none;" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+    </div>
+
+    <div class="container login-container">
+        <div class="brand">
+            <h1>TypeMaster<span class="dot">.</span></h1>
+            <p style="color: var(--gray-text);">Track your progress and compete.</p>
+        </div>
+
+        <form id="login-form" class="auth-form">
+            <h2>Welcome Back</h2>
+            
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="login-username" placeholder="Enter your username" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                    <span class="password-toggle-icon" onclick="togglePassword('login-password', this)">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    </span>
+                </div>
+            </div>
+
+            <button type="submit" class="restart-btn">Login to Account</button>
+            
+            <p class="switch-text">
+                New here? <span id="show-register">Create an Account</span>
+            </p>
+        </form>
+
+        <form id="register-form" class="auth-form hidden">
+            <h2>Create Account</h2>
+            
+            <div class="form-group">
+                <label>Choose Username</label>
+                <input type="text" id="reg-username" placeholder="e.g. SpeedRacer" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Choose Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="reg-password" placeholder="Min. 4 characters" required>
+                    <span class="password-toggle-icon" onclick="togglePassword('reg-password', this)">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    </span>
+                </div>
+            </div>
+
+            <button type="submit" class="restart-btn btn-green">Sign Up</button>
+            
+            <p class="switch-text">
+                Already have an account? <span id="show-login">Login here</span>
+            </p>
+        </form>
+
+        <div id="auth-msg" class="feedback-hidden">Error message here</div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
