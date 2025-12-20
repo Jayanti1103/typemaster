@@ -23,4 +23,5 @@ A modern, interactive **typing speed test website** built with **Vanilla JavaScr
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/](https://github.com/)[YOUR-USERNAME]/typemaster-pro.git
+   git clone https://github.com/Jayanti1103/typemaster.git
+   
